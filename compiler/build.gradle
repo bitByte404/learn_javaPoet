@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', includes: ['*.jar'])
+
+    // 背后的服务
+    compileOnly libs.auto.service
+    annotationProcessor libs.auto.service
+
+    // 依赖注解
+    implementation project(":annotation")
+
+    // 帮助我们通过类调用的形式来生产java代码 [JavaPoet]
+    implementation libs.javapoet
+}
